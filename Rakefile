@@ -11,7 +11,7 @@ begin
     gem.homepage = "http://github.com/technoweenie/tender_sync"
     gem.authors = ["rick"]
     gem.add_dependency "faraday", "~> 0.2.0"
-    gem.add_dependency 'yajl'
+    gem.add_dependency 'yajl-ruby'
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
   Jeweler::GemcutterTasks.new
