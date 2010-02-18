@@ -15,6 +15,6 @@ class TestConfig < Test::Unit::TestCase
   end
 
   def test_sets_api_key_from_config
-    assert_equal 'def', @conn.params['auth']
+    assert_equal 'def', @conn.headers['X-Tender-Auth']
   end
 end
