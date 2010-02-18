@@ -1,6 +1,17 @@
 = tender_sync
 
-Description goes here.
+Sync Tender FAQs to and from Tender.
+
+1. Download from git
+
+  git clone git://github.com/technoweenie/tender_sync
+
+2. Setup config.yml
+
+== TODO
+
+* Ability to push FAQs back to Tender
+* Web server for responding to callbacks from Github, Bitbucket, git, hg, svn, etc
 
 == Note on Patches/Pull Requests
  
