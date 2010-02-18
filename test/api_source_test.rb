@@ -20,10 +20,10 @@ class TestApiSource < Test::Unit::TestCase
     dir = @source.fetch_dir
 
     assert (faqs = dir['abc'])
-    assert_equal 'abc.mkdn', faqs[0].filename
-    assert_equal 'abc',      faqs[0].body
-    assert_equal 'def.mkdn', faqs[1].filename
-    assert_equal 'def',      faqs[1].body
+    assert_equal 'abc', faqs[0].filename
+    assert_equal 'abc', faqs[0].body
+    assert_equal 'def', faqs[1].filename
+    assert_equal 'def', faqs[1].body
   end
 
   def setup_connection_for_faqs

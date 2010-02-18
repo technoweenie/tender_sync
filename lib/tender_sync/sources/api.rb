@@ -8,7 +8,7 @@ class TenderSync::Sources::Api
   def fetch_dir
     dir = TenderSync::Dir.new
     fetch.each do |faq|
-      dir.add faq[:section], TenderSync::Dir::File.new(faq[:permalink] + ".mkdn", faq[:body])
+      dir.add faq[:section], TenderSync::Dir::File.new(faq[:permalink], faq[:body])
     end
     dir
   end
