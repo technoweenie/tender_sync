@@ -3,6 +3,7 @@ module TenderSync
   autoload :Dir,    'tender_sync/dir'
 
   module Sources
-    autoload :Api, 'tender_sync/sources/api'
+    autoload :Filesystem, 'tender_sync/sources/filesystem'
+    autoload :Api,        'tender_sync/sources/api'
   end
 end
