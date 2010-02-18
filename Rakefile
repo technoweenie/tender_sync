@@ -1,6 +1,67 @@
 require 'rubygems'
 require 'rake'
 
+namespace :tsync do
+  desc "fetches FAQ articles from Tender into the local filesystem"
+  task :fetch => :load_config do
+    api = TenderSync::Sources::Api.new($config)
+    fs  = TenderSync::Sources::Filesystem.new($config)
+    dir = api.fetch_dir
+    fs.write_dir(dir)
+  end
+
+  desc "helps you configure your tender-sync settings"
+  task :config do
+    sample = <<-SAMPLE
+tender:
+  path: "faqs/tender_support"
+  site: "help"
+  api_key: "abc123foo"
+    SAMPLE
+    if File.exist?("config.yml")
+      puts "A sample config file might look like:"
+      puts sample
+    else
+      File.open('config.yml', 'w') do |f|
+        f << sample
+      end
+      puts "This has been written to config.yml, your shiny new config file:"
+      puts sample
+    end
+    puts
+    puts "Now, you can fetch FAQs from tender with:"
+    puts "  rake tsync:fetch SITE=tender"
+  end
+
+  task :load_config do
+    $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), 'lib'))
+    require 'tender_sync'
+
+    config = nil
+    if File.exist?("config.yml")
+      require 'yaml'
+      global_config = YAML.load_file("config.yml")
+      config = global_config[ENV['SITE'].to_s]
+    end
+
+    if config
+      $config = TenderSync::Config.new
+      config.each do |key, value|
+        $config.send "#{key}=", value
+      end
+    else
+      puts "Invalid Site: #{ENV['SITE'].inspect}"
+      if File.exist?("config.yml")
+        puts "Check config.yml"
+      else
+        puts
+        Rake::Task['tsync:config'].execute
+      end
+      exit
+    end
+  end
+end
+
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|

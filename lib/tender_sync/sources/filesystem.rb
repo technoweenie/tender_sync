@@ -1,3 +1,4 @@
+require 'fileutils'
 class TenderSync::Sources::Filesystem
   attr_reader   :path
   attr_accessor :config
@@ -30,5 +31,21 @@ class TenderSync::Sources::Filesystem
       dir.add section, TenderSync::Dir::File.new(permalink, lambda { IO.read(file) })
     end
     dir
+  end
+
+  def write_dir(dir)
+    if !path
+      raise ArgumentError, "Path cannot be nil"
+    end
+
+    dir.each do |section, files|
+      section_path = File.join(path, section)
+      FileUtils.mkdir_p section_path
+      files.each do |file|
+        File.open(File.join(section_path, file.filename + ".mkdn"), 'w') do |f|
+          f << file.body
+        end
+      end
+    end
   end
 end
