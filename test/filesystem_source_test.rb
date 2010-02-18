@@ -1,8 +1,10 @@
 require File.expand_path(File.join(File.dirname(__FILE__), 'helper'))
 
-class TestApiSource < Test::Unit::TestCase
+class TestFilesystemSource < Test::Unit::TestCase
   def setup
-    @source = TenderSync::Sources::Filesystem.new(File.join(File.dirname(__FILE__), 'sample'))
+    @config = TenderSync::Config.new
+    @config.path = File.join(File.dirname(__FILE__), 'sample')
+    @source = TenderSync::Sources::Filesystem.new(@config)
   end
 
   def test_builds_tender_sync_dir_from_fetched_faqs
