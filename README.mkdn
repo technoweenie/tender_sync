@@ -1,4 +1,4 @@
-= tender_sync
+# tender_sync
 
 Sync Tender FAQs to and from Tender.
 
@@ -8,12 +8,27 @@ Sync Tender FAQs to and from Tender.
 
 2. Setup config.yml
 
-== TODO
+  cd tender_sync
+  rake tsync:config
+
+3. Fetch documents
+
+  rake tsync:fetch SITE=your-tender-site
+
+4. Update FAQs
+
+  (choose your own workflow, text editor, source control repo, etc)
+
+5. Push to Tender
+
+  This space intentionally left blank.
+
+## TODO
 
 * Ability to push FAQs back to Tender
 * Web server for responding to callbacks from Github, Bitbucket, git, hg, svn, etc
 
-== Note on Patches/Pull Requests
+## Note on Patches/Pull Requests
  
 * Fork the project.
 * Make your feature addition or bug fix.
@@ -23,6 +38,6 @@ Sync Tender FAQs to and from Tender.
   (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)
 * Send me a pull request. Bonus points for topic branches.
 
-== Copyright
+## Copyright
 
 Copyright (c) 2010 rick. See LICENSE for details.
