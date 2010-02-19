@@ -4,13 +4,17 @@ Sync Tender FAQs to and from Tender.
 
 1. Download from git  
     $ git clone git://github.com/technoweenie/tender_sync
+
 2. Setup config.yml  
     $ cd tender_sync
     $ rake tsync:config
+
 3. Fetch documents  
     rake tsync:fetch SITE=your-tender-site
+
 4. Update FAQs  
   (choose your own workflow, text editor, source control repo, etc)
+
 5. Push to Tender  
   This space intentionally left blank.
 
